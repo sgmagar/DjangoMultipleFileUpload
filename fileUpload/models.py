@@ -6,13 +6,13 @@ from django.db import models
 
 class Person(models.Model):
 	name = models.CharField('Full Name of Person',max_length=100)
-	Age = models.PositiveIntegerField()
+	age = models.PositiveIntegerField()
 
 	def __unicode__(self):
 		return self.name
 
 class PersonPhoto(models.Model):
 	photo = models.FileField('Photos of Person',upload_to='image')
-
+	person = models.ForeignKey(Person, related_name='photos')
 	def __unicode__(self):
-		return self.photo
+		return self.photo.url
